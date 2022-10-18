@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Assign 17 - Iterators</title>
+  </head>
+  <body>
+    <script>
+      "use strict";
+      // 1.
+      function iterate1() {
+        let arr = ["John", "Rohn", "Danny", "James"];
+        for (let x of arr) {
+          console.log(x);
+        }
+      }
+      iterate1();
+
+      // 2.
+      function iterate2() {
+        let str = "iNeuron";
+        for (let x of str) {
+          console.log(x);
+        }
+      }
+      iterate2();
+
+      // 3.
+      function nextIterator(arr) {
+        let count = 0;
+        function next() {
+          return count++;
+        }
+        return next;
+      }
+
+      const array3 = [1, 2, 3];
+      const iteratorWithNext = nextIterator(array3);
+
+      // 4.
+      let arr1 = ["a", "b", "c", "d"];
+      let arr2 = ["e", "f", "g", "h", "a", "i", "j"];
+      let comm_arr = [];
+      let iterate = arr1[Symbol.iterator]();
+      for(let i=0;i<arr1.length;i++){
+         const result = iterate.next().value;
+        if (arr2.includes(result)){
+          comm_arr.push(result);
+        }
+      }
+      console.log('common ele arr',comm_arr)
+
+      // 5.
+      const nums = [22, 54, 76, 92, 43, 33];
+      // for loop
+      for (let i = 0; i < nums.length; i++) {
+        console.log("forloop", nums[i]);
+      }
+      // fo -of
+      for (let score of nums) {
+        console.log(score);
+      }
+      // for -each
+      nums.forEach((score) => {
+        console.log("for-each", score);
+      });
+
+      // while loop
+      let i = 0;
+
+      while (i < nums.length) {
+        console.log("while", nums[i]);
+        i++;
+      }
+      // do while
+
+      let j = 0;
+
+      do {
+        console.log("do-while", nums[j]);
+        j++;
+      } while (j < nums.length);
+
+      // iterator
+      let iterator = nums[Symbol.iterator]();
+
+      while (true) {
+        let result = iterator.next();
+        if (result.done) break;
+        console.log("iterator=>", result.value);
+        // alert(result.value); // outputs characters one by one
+      }
+    </script>
+  </body>
+</html>
